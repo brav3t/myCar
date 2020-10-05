@@ -7,22 +7,22 @@ data class CarWithRelations (
 
     @Embedded val car: Car,
     @Relation(
-        parentColumn = "carId",
-        entityColumn = "checkpointId"
+        parentColumn = "id",
+        entityColumn = "car_id"
     )
     val carStates: List<Checkpoint>,
 
     @Relation(
         entity = Fuelling::class,
-        parentColumn = "carId",
-        entityColumn = "fuellingId"
+        parentColumn = "id",
+        entityColumn = "car_id"
     )
     val carFuelling: List<Fuelling>,
 
     @Relation(
         entity = Service::class,
-        parentColumn = "carId",
-        entityColumn = "serviceId"
+        parentColumn = "id",
+        entityColumn = "car_id"
     )
     val carServices: List<Service>
 )

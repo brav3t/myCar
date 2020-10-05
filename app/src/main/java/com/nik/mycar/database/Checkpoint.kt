@@ -1,22 +1,30 @@
 package com.nik.mycar.database
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 import java.util.*
 
-@Entity(tableName = "checkpoints_table")
+@Entity(
+    tableName = "checkpoints_table",
+    foreignKeys = [
+        ForeignKey(entity = Car::class, parentColumns = ["id"], childColumns = ["car_id"])
+    ],
+    indices = [Index("car_id")]
+)
 data class Checkpoint(
 
-    @PrimaryKey(autoGenerate = true)
-    var checkpointId: Long,
+    @ColumnInfo(name = "car_id")
+    val carId: Long,
 
     @ColumnInfo(name = "date")
-    var date: Date,
+    var date: Calendar = Calendar.getInstance(),
 
     @ColumnInfo(name = "mileage")
     var mileage: Int,
 
     @ColumnInfo(name = "avg_consumption")
-    var avg_consumption: Double
+    var avg_consumption: Double,
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var checkpointId: Long
 )

@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey
 data class Car(
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     val carId: Long,
 
     @ColumnInfo(name = "name")

@@ -1,22 +1,30 @@
 package com.nik.mycar.database
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 import java.util.*
 
-@Entity(tableName = "services_table")
+@Entity(
+    tableName = "services_table",
+    foreignKeys = [
+        ForeignKey(entity = Car::class, parentColumns = ["id"], childColumns = ["car_id"])
+    ],
+    indices = [Index("car_id")]
+)
 data class Service(
 
-    @PrimaryKey(autoGenerate = true)
-    var serviceId: Long,
+    @ColumnInfo(name = "car_id")
+    val carId: Long,
 
     @ColumnInfo(name = "date")
-    var date: Date,
+    var date: Calendar = Calendar.getInstance(),
 
     @ColumnInfo(name = "description")
     var description: String,
 
     @ColumnInfo(name = "cost")
-    var cost: Double
+    var cost: Double,
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var serviceId: Long
 )
