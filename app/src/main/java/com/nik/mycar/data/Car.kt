@@ -1,4 +1,4 @@
-package com.nik.mycar.database
+package com.nik.mycar.data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

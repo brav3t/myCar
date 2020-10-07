@@ -1,17 +1,12 @@
-package com.nik.mycar.database
+package com.nik.mycar.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import androidx.room.Transaction
 
 @Dao
 interface CarsDao {
-
-    @Transaction // Rooms to queries, Transaction ensures the whole operation is performed atomically
-    @Query("SELECT * FROM cars_table")
-    fun getCars(): LiveData<List<CarWithRelations>>
 
     @Insert
     suspend fun insert(car: Car)
@@ -23,9 +18,9 @@ interface CarsDao {
     suspend fun clear()
 
     @Query("SELECT * from cars_table WHERE id = :key")
-    suspend fun get(key: Long): Car?
+    suspend fun getCar(key: Long): Car?
 
     @Query("SELECT * FROM cars_table ORDER BY id DESC")
-    fun getAllCheckpoints(): LiveData<List<Car>>
+    fun getAllCars(): LiveData<List<Car>>
 
 }

@@ -1,4 +1,4 @@
-package com.nik.mycar.database
+package com.nik.mycar.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.Insert
@@ -9,16 +9,16 @@ interface ServiceDao {
     @Insert
     suspend fun insert(service: Service)
 
-    @Query("DELETE FROM services_table WHERE serviceId = :key")
+    @Query("DELETE FROM services_table WHERE id = :key")
     suspend fun delete(key: Long)
 
     @Query("DELETE FROM services_table")
     suspend fun clear()
 
-    @Query("SELECT * from services_table WHERE serviceId = :key")
-    suspend fun get(key: Long): Service?
+    @Query("SELECT * from services_table WHERE id = :key")
+    suspend fun getService(key: Long): Service?
 
-    @Query("SELECT * FROM services_table ORDER BY serviceId DESC")
+    @Query("SELECT * FROM services_table ORDER BY id DESC")
     fun getAllService(): LiveData<List<Service>>
 
 }
