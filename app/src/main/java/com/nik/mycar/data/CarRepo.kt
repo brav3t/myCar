@@ -1,24 +1,21 @@
 package com.nik.mycar.data
 
-import androidx.lifecycle.LiveData
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class CarRepo(private val carsDao: CarsDao) {
+@Singleton
+class CarRepo @Inject constructor(private val carDao: CarDao) {
 
-    val allCars: LiveData<List<Car>> = carsDao.getAllCars()
-
-    suspend fun getCar(key: Long) {
-        carsDao.getCar(key)
+    suspend fun addCar(carID: String) {
+        val car = Car(carID)
+        carDao.insertCar(car)
     }
 
-    suspend fun insert(car: Car) {
-        carsDao.insert(car)
-    }
+    fun getCar(carId: String) = carDao.getCar(carId)
 
-    suspend fun delete(key: Long) {
-        carsDao.delete(key)
-    }
+    fun getAllCars() = carDao.getAllCars()
 
-    suspend fun clear() {
-        carsDao.clear()
-    }
+    suspend fun deleteCar(carId: String) = carDao.deleteCar(carId)
+
+    suspend fun deleteAllCars() = carDao.deleteAllCars()
 }

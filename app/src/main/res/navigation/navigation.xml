@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation"
-    app:startDestination="@id/mainFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/carsFragment">
 
     <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.nik.mycar.ui.main.MainFragment"
-        android:label="MainFragment" />
+        android:id="@+id/carsFragment"
+        android:name="com.nik.mycar.ui.main.CarsFragment"
+        android:label="CarsFragment" />
 </navigation>

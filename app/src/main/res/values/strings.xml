@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">myCar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_add_car">Add Car</string>
+    <string name="text_add_car">Add car</string>
+    <string name="text_car_name">Car name</string>
+    <string name="text_add">Add</string>
+    <string name="text_ok">Ok</string>
+    <string name="add_new_car_s_name">Add new car\'s name</string>
 </resources>

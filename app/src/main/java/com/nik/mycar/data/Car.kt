@@ -7,10 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "cars_table")
 data class Car(
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = "id")
-    val carId: Long,
-
-    @ColumnInfo(name = "name")
-    val name: String,
+    val carId: String
 )
