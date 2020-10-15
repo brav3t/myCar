@@ -8,6 +8,14 @@
 
     <fragment
         android:id="@+id/carsFragment"
-        android:name="com.nik.mycar.ui.main.CarsFragment"
-        android:label="CarsFragment" />
+        android:name="com.nik.mycar.ui.main.CarListFragment"
+        android:label="CarsFragment" >
+        <action
+            android:id="@+id/action_carsFragment_to_carDetailsFragment"
+            app:destination="@id/carDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/carDetailsFragment"
+        android:name="com.nik.mycar.ui.main.CarDetailsFragment"
+        android:label="CarDetailsFragment" />
 </navigation>
