@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.nik.mycar.databinding.CarListItemBinding
 
-class CarAdapter : ListAdapter<Car, RecyclerView.ViewHolder>(CarDiffCallback()) {
+class CarListAdapter : ListAdapter<Car, RecyclerView.ViewHolder>(CarDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return CarViewHolder(

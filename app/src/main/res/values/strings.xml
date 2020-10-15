@@ -8,4 +8,5 @@
     <string name="text_add">Add</string>
     <string name="text_ok">Ok</string>
     <string name="add_new_car_s_name">Add new car\'s name</string>
+    <string name="delete_car">Delete car</string>
 </resources>

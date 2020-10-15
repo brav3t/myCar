@@ -8,7 +8,7 @@ import com.nik.mycar.data.Car
 import com.nik.mycar.data.CarRepo
 import kotlinx.coroutines.launch
 
-class CarViewModel @ViewModelInject constructor(
+class CarListVM @ViewModelInject constructor(
     private val carRepo: CarRepo,
     @Assisted private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
@@ -19,14 +19,5 @@ class CarViewModel @ViewModelInject constructor(
         viewModelScope.launch {
             carRepo.addCar(carId)
         }
-    }
-
-    init {
-        Log.i("CarViewModel", "CarViewModel created!")
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        Log.i("CarViewModel", "CarViewModel destroyed!")
     }
 }

@@ -6,27 +6,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.nik.mycar.adapters.CarAdapter
-import com.nik.mycar.databinding.FragmentCarsBinding
-import com.nik.mycar.viewmodels.CarViewModel
+import com.nik.mycar.adapters.CarListAdapter
+import com.nik.mycar.databinding.FragmentCarListBinding
+import com.nik.mycar.viewmodels.CarListVM
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CarsFragment : Fragment() {
+class CarListFragment : Fragment() {
 
-    private val carViewModel: CarViewModel by viewModels()
+    private val carListVM: CarListVM by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentCarsBinding.inflate(inflater, container, false)
-        context ?: return binding.root
+        val binding = FragmentCarListBinding.inflate(inflater, container, false)
 
-        val adapter = CarAdapter()
+        val adapter = CarListAdapter()
         binding.carList.adapter = adapter
-        subscribeUi(adapter)
+        carListVM.cars.observe(viewLifecycleOwner) { cars ->
+            adapter.submitList(cars)
+        }
 
         binding.btnAddCar.setOnClickListener{ _ ->
             if (binding.newCarName.visibility == View.INVISIBLE) {
@@ -34,7 +35,7 @@ class CarsFragment : Fragment() {
             }
             else {
                 val newCarName = binding.newCarName.text.toString()
-                carViewModel.addCar(newCarName)
+                carListVM.addCar(newCarName)
                 binding.newCarName.text.clear()
                 binding.newCarName.visibility = View.INVISIBLE
             }
@@ -42,11 +43,5 @@ class CarsFragment : Fragment() {
 
         setHasOptionsMenu(true)
         return binding.root
-    }
-
-    private fun subscribeUi(adapter: CarAdapter) {
-        carViewModel.cars.observe(viewLifecycleOwner) { cars ->
-            adapter.submitList(cars)
-        }
     }
 }
