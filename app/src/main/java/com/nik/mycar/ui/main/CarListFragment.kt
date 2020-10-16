@@ -21,6 +21,7 @@ class CarListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         val binding = FragmentCarListBinding.inflate(inflater, container, false)
 
         val adapter = CarListAdapter()
@@ -41,7 +42,7 @@ class CarListFragment : Fragment() {
             }
         }
 
-        setHasOptionsMenu(true)
+        //setHasOptionsMenu(true)
         return binding.root
     }
 }

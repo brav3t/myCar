@@ -1,12 +1,15 @@
 package com.nik.mycar.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import com.nik.mycar.data.Car
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.nik.mycar.databinding.CarListItemBinding
+import com.nik.mycar.ui.main.CarListFragmentDirections
 
 class CarListAdapter : ListAdapter<Car, RecyclerView.ViewHolder>(CarDiffCallback()) {
 
@@ -29,11 +32,17 @@ class CarListAdapter : ListAdapter<Car, RecyclerView.ViewHolder>(CarDiffCallback
         private val binding: CarListItemBinding
     ) : RecyclerView.ViewHolder(binding.root){
         init {
-
+            binding.setClickListener {
+                binding.car?.let { car ->
+                    navigateToCar(car, it)
+                }
+            }
         }
 
-        private fun navigateToCar(
-        ){}
+        private fun navigateToCar(car: Car, view: View) {
+            val direction = CarListFragmentDirections.actionCarsFragmentToCarDetailsFragment(car.carId)
+            view.findNavController().navigate(direction)
+        }
 
         fun bind(item: Car) {
             binding.apply {

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.nik.mycar.R
+import com.nik.mycar.databinding.FragmentCarDetailsBinding
 import com.nik.mycar.databinding.FragmentCarListBinding
 import com.nik.mycar.viewmodels.CarDetailsVM
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +21,7 @@ class CarDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentCarListBinding.inflate(inflater, container, false)
+        val binding = FragmentCarDetailsBinding.inflate(inflater, container, false)
 
 
 
