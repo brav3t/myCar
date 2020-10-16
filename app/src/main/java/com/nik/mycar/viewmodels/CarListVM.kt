@@ -1,6 +1,5 @@
 package com.nik.mycar.viewmodels
 
-import android.util.Log
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*

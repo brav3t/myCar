@@ -4,12 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/carsFragment">
+    app:startDestination="@id/carListFragment">
 
     <fragment
-        android:id="@+id/carsFragment"
+        android:id="@+id/carListFragment"
         android:name="com.nik.mycar.ui.main.CarListFragment"
-        android:label="CarsFragment" >
+        android:label="CarListFragment">
         <action
             android:id="@+id/action_carsFragment_to_carDetailsFragment"
             app:destination="@id/carDetailsFragment"
@@ -17,9 +17,7 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <argument
-            android:name="carId"
-            app:argType="string" />
+
     </fragment>
 
     <fragment
@@ -29,6 +27,13 @@
         <argument
             android:name="carId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_carDetailsFragment_to_carListFragment"
+            app:destination="@id/carListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
 </navigation>

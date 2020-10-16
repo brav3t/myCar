@@ -15,7 +15,7 @@ class CarRepo @Inject constructor(private val carDao: CarDao) {
 
     fun getAllCars() = carDao.getAllCars()
 
-    suspend fun deleteCar(carId: String) = carDao.deleteCar(carId)
+    suspend fun deleteCar(carId: String?) = carDao.deleteCar(carId)
 
     suspend fun deleteAllCars() = carDao.deleteAllCars()
 }

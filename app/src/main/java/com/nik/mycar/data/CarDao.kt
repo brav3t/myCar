@@ -19,7 +19,7 @@ interface CarDao {
     suspend fun insertCar(car: Car)
 
     @Query("DELETE FROM cars_table WHERE id = :carId")
-    suspend fun deleteCar(carId: String)
+    suspend fun deleteCar(carId: String?)
 
     @Query("DELETE FROM cars_table")
     suspend fun deleteAllCars()
