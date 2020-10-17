@@ -6,15 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelStore
+import androidx.navigation.fragment.navArgs
 import com.nik.mycar.adapters.CarListAdapter
 import com.nik.mycar.databinding.FragmentCarListBinding
-import com.nik.mycar.viewmodels.CarListVM
+import com.nik.mycar.viewmodels.CarVM
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CarListFragment : Fragment() {
 
-    private val carListVM: CarListVM by viewModels()
+    private val carVM: CarVM by viewModels()
+    private val args: CarListFragmentArgs? by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,7 +29,7 @@ class CarListFragment : Fragment() {
 
         val adapter = CarListAdapter()
         binding.carList.adapter = adapter
-        carListVM.cars.observe(viewLifecycleOwner) { cars ->
+        carVM.cars.observe(viewLifecycleOwner) { cars ->
             adapter.submitList(cars)
         }
 
@@ -36,7 +39,7 @@ class CarListFragment : Fragment() {
             }
             else {
                 val newCarName = binding.newCarName.text.toString()
-                carListVM.addCar(newCarName)
+                carVM.addCar(newCarName)
                 binding.newCarName.text.clear()
                 binding.newCarName.visibility = View.INVISIBLE
             }
@@ -45,4 +48,6 @@ class CarListFragment : Fragment() {
         //setHasOptionsMenu(true)
         return binding.root
     }
+
+
 }

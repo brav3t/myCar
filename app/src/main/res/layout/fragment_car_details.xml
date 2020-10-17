@@ -7,8 +7,8 @@
 
     <data>
         <variable
-            name="carDetailsVM"
-            type="com.nik.mycar.viewmodels.CarDetailsVM" />
+            name="fuellingVM"
+            type="com.nik.mycar.viewmodels.FuellingVM" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +23,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
-            android:text="@{carDetailsVM.carId}"
+
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:text="1.158.200Ft"
+
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -10,6 +10,9 @@
         android:id="@+id/carListFragment"
         android:name="com.nik.mycar.ui.main.CarListFragment"
         android:label="CarListFragment">
+        <argument
+            android:name="@string/delete_car"
+            app:argType="boolean" />
         <action
             android:id="@+id/action_carsFragment_to_carDetailsFragment"
             app:destination="@id/carDetailsFragment"

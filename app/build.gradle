@@ -21,7 +21,7 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments += [ "room.incremental":"true" ]
-//                arguments["dagger.hilt.disableModulesHaveInstallInCheck"] = "true"
+                arguments["dagger.hilt.disableModulesHaveInstallInCheck"] = "true"
             }
         }
     }
@@ -87,10 +87,12 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_coroutine"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_coroutine"
 
-    // Dagger and Hilt
+    // Dagger, Hilt, Assisted Inject
+    compileOnly "com.squareup.inject:assisted-inject-annotations-dagger2:$version_assistedInject"
     kapt "com.google.dagger:hilt-android-compiler:$version_hilt"
-    implementation "com.google.dagger:hilt-android:$version_hilt"
+    kapt "com.squareup.inject:assisted-inject-processor-dagger2:$version_assistedInject"
     kapt "androidx.hilt:hilt-compiler:$version_hiltViewModel"
+    implementation "com.google.dagger:hilt-android:$version_hilt"
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$version_hiltViewModel"
 //    implementation "com.google.dagger:dagger:2.x"
 //    kapt "com.google.dagger:dagger-compiler:2.x"

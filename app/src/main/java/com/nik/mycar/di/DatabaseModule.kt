@@ -3,6 +3,7 @@ package com.nik.mycar.di
 import android.content.Context
 import com.nik.mycar.data.AppDatabase
 import com.nik.mycar.data.CarDao
+import com.nik.mycar.data.FuellingDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,5 +24,10 @@ class DatabaseModule {
     @Provides
     fun provideCarDao(appDatabase: AppDatabase): CarDao {
         return appDatabase.carDao()
+    }
+
+    @Provides
+    fun provideFuellingDao(appDatabase: AppDatabase): FuellingDao {
+        return appDatabase.fuellingDao()
     }
 }
