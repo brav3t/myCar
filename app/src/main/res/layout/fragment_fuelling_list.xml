@@ -4,50 +4,47 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.main.CarListFragment">
+    tools:context=".ui.main.FuellingListFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/car_list"
-            android:layout_width="wrap_content"
+            android:id="@+id/fuelling_list"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/button2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_add_car"
-            tools:listitem="@layout/list_item_car" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_filter"
+            tools:listitem="@layout/list_item_fuelling" />
 
         <Button
-            android:id="@+id/btn_add_car"
+            android:id="@+id/btn_filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:text="@string/text_add_car"
+            android:text="Filter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/new_car_name"
-            android:layout_width="265dp"
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="@string/add_new_car_s_name"
-            android:inputType="textPersonName"
-            android:visibility="invisible"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btn_add_car"
-            app:layout_constraintEnd_toStartOf="@+id/btn_add_car"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:visibility="invisible" />
+            android:layout_marginBottom="16dp"
+            android:text="Clear Filterings"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

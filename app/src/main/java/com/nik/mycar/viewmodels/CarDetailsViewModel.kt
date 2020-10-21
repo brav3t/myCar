@@ -14,9 +14,11 @@ class CarDetailsViewModel(
     val carId: String
     ) : ViewModel() {
 
-    var costSum: LiveData<String?> = Transformations.map(fuellingDao.getAllCostByCarId(carId)) { sumOfCosts ->
+    val costSum: LiveData<String?> = Transformations.map(fuellingDao.getAllCostByCarId(carId)) { sumOfCosts ->
         NumberFormat.getCurrencyInstance(Locale("hu", "HU")).format(sumOfCosts?: 0.0)
     }
+
+    val fuellings: LiveData<List<Fuelling>> = fuellingDao.getAllByCarId(carId)
 
     fun addFuelling(amount: Double, cost: Double) {
         viewModelScope.launch {

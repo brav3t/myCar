@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -11,6 +12,7 @@ import com.nik.mycar.data.AppDatabase
 import com.nik.mycar.databinding.FragmentCarDetailsBinding
 import com.nik.mycar.viewmodels.CarDetailsViewModel
 import com.nik.mycar.viewmodels.CarDetailsViewModelFactory
+import kotlinx.android.synthetic.main.fragment_car_details.*
 
 class CarDetailsFragment : Fragment() {
 
@@ -33,7 +35,6 @@ class CarDetailsFragment : Fragment() {
             viewModel = carDetailsViewModel
             lifecycleOwner = this@CarDetailsFragment
         }
-//        binding.lifecycleOwner = this
 
         binding.btnDeleteCar.setOnClickListener{
             val directions = CarDetailsFragmentDirections.actionCarDetailsFragmentToCarListFragment()
@@ -44,6 +45,27 @@ class CarDetailsFragment : Fragment() {
         binding.btnAddFuelling.setOnClickListener{
             val directions = CarDetailsFragmentDirections.actionCarDetailsFragmentToAddFuellingDialogFragment(args.carId)
             it.findNavController().navigate(directions)
+        }
+
+        binding.btnFuellingCost.setOnClickListener{
+            val direction = CarDetailsFragmentDirections.actionCarDetailsFragmentToFuellingListFragment(args.carId)
+            it.findNavController().navigate(direction)
+        }
+
+        binding.btnServiceCost.setOnClickListener {
+            Toast.makeText(context, "Not implemented", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.btnAddService.setOnClickListener{
+            Toast.makeText(context, "Not implemented", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.btnMileage.setOnClickListener {
+            Toast.makeText(context, "Not implemented", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.btnAddCheckpoint.setOnClickListener{
+            Toast.makeText(context, "Not implemented", Toast.LENGTH_SHORT).show()
         }
 
         return binding.root

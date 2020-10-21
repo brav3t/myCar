@@ -8,14 +8,14 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.nik.mycar.databinding.CarListItemBinding
+import com.nik.mycar.databinding.ListItemCarBinding
 import com.nik.mycar.ui.main.CarListFragmentDirections
 
 class CarListAdapter : ListAdapter<Car, RecyclerView.ViewHolder>(CarDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return CarViewHolder(
-            CarListItemBinding.inflate(
+        return CarItemViewHolder(
+            ListItemCarBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -25,11 +25,11 @@ class CarListAdapter : ListAdapter<Car, RecyclerView.ViewHolder>(CarDiffCallback
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val car = getItem(position)
-        (holder as CarViewHolder).bind(car)
+        (holder as CarItemViewHolder).bind(car)
     }
 
-    class CarViewHolder(
-        private val binding: CarListItemBinding
+    class CarItemViewHolder(
+        private val binding: ListItemCarBinding
     ) : RecyclerView.ViewHolder(binding.root){
         init {
             binding.setClickListener {
