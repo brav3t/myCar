@@ -40,7 +40,7 @@ class CarListAdapter : ListAdapter<Car, RecyclerView.ViewHolder>(CarDiffCallback
         }
 
         private fun navigateToCar(car: Car, view: View) {
-            val direction = CarListFragmentDirections.actionCarsFragmentToCarDetailsFragment(car.carId)
+            val direction = CarListFragmentDirections.actionCarListFragmentToCarDetailsFragment(car.carId)
             view.findNavController().navigate(direction)
         }
 

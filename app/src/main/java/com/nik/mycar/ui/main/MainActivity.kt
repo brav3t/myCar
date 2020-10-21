@@ -2,14 +2,18 @@ package com.nik.mycar.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.DialogFragment
 import com.nik.mycar.R
-import dagger.hilt.android.AndroidEntryPoint
+import com.nik.mycar.databinding.MainActivityBinding
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
+        val binding = DataBindingUtil.setContentView<MainActivityBinding>(this, R.layout.main_activity)
+
+        val navController = binding.navHostFragment
+
     }
 }

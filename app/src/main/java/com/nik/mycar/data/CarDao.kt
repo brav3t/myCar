@@ -10,7 +10,7 @@ import androidx.room.Query
 interface CarDao {
 
     @Query("SELECT * from cars_table WHERE id = :carId")
-    fun getCar(carId: String): Car?
+    fun getCar(carId: String): Car
 
     @Query("SELECT * FROM cars_table ORDER BY id DESC")
     fun getAllCars(): LiveData<List<Car>>

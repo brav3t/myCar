@@ -5,31 +5,33 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelStore
-import androidx.navigation.fragment.navArgs
+import androidx.lifecycle.ViewModelProvider
 import com.nik.mycar.adapters.CarListAdapter
+import com.nik.mycar.data.AppDatabase
 import com.nik.mycar.databinding.FragmentCarListBinding
-import com.nik.mycar.viewmodels.CarVM
-import dagger.hilt.android.AndroidEntryPoint
+import com.nik.mycar.viewmodels.CarViewModel
+import com.nik.mycar.viewmodels.CarViewModelFactory
 
-@AndroidEntryPoint
 class CarListFragment : Fragment() {
 
-    private val carVM: CarVM by viewModels()
-    private val args: CarListFragmentArgs? by navArgs()
+    private lateinit var carViewModel: CarViewModel
+    private lateinit var factory: CarViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val application = requireNotNull(this.activity).application
+        val carDao = AppDatabase.getInstance(application).carDao()
+        factory = CarViewModelFactory(carDao)
+        carViewModel = ViewModelProvider(this, factory).get(CarViewModel::class.java)
 
         val binding = FragmentCarListBinding.inflate(inflater, container, false)
 
         val adapter = CarListAdapter()
         binding.carList.adapter = adapter
-        carVM.cars.observe(viewLifecycleOwner) { cars ->
+        carViewModel.cars.observe(viewLifecycleOwner) { cars ->
             adapter.submitList(cars)
         }
 
@@ -39,7 +41,7 @@ class CarListFragment : Fragment() {
             }
             else {
                 val newCarName = binding.newCarName.text.toString()
-                carVM.addCar(newCarName)
+                carViewModel.addCar(newCarName)
                 binding.newCarName.text.clear()
                 binding.newCarName.visibility = View.INVISIBLE
             }
@@ -48,6 +50,4 @@ class CarListFragment : Fragment() {
         //setHasOptionsMenu(true)
         return binding.root
     }
-
-
 }
