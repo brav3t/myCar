@@ -17,30 +17,59 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@+id/button2"
+            app:layout_constraintBottom_toTopOf="@+id/btn_clear_fuellings"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_filter"
-            tools:listitem="@layout/list_item_fuelling" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_order_by_cost"
+            tools:listitem="@layout/list_item_fuelling" >
+
+        </androidx.recyclerview.widget.RecyclerView>
 
         <Button
-            android:id="@+id/btn_filter"
+            android:id="@+id/btn_order_by_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="Filter"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="order by date"
+            android:textSize="9sp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_order_by_amount"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btn_order_by_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="order by amount"
+            android:textSize="9sp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_order_by_cost"
+            app:layout_constraintStart_toEndOf="@+id/btn_order_by_date"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_order_by_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="order by cost"
+            android:textSize="9sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_order_by_amount"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_clear_fuellings"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:text="Clear Filterings"
+            android:text="Clear Fuellings"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

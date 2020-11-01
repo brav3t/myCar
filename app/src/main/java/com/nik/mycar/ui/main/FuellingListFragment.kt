@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.map
 import com.nik.mycar.adapters.FuellingListAdapter
 import com.nik.mycar.data.AppDatabase
 import com.nik.mycar.databinding.FragmentFuellingListBinding
@@ -32,8 +33,20 @@ class FuellingListFragment : Fragment() {
 
         val adapter = FuellingListAdapter()
         binding.fuellingList.adapter = adapter
-        carDetailsViewModel.fuellings.observe(viewLifecycleOwner) { fuellingList ->
+        carDetailsViewModel.fuelling.observe(viewLifecycleOwner) { fuellingList ->
             adapter.submitList(fuellingList)
+        }
+
+        binding.btnOrderByDate.setOnClickListener {
+            carDetailsViewModel.flipDateOrder()
+        }
+
+        binding.btnOrderByAmount.setOnClickListener {
+            carDetailsViewModel.flipAmountOrder()
+        }
+
+        binding.btnOrderByCost.setOnClickListener {
+            carDetailsViewModel.flipCostOrder()
         }
 
         return binding.root
