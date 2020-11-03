@@ -41,7 +41,6 @@ class AddFuellingDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btn_add_fuelling.setOnClickListener {
-
             val amountStr: String? = input_amount.text?.toString()
             if(amountStr.isNullOrEmpty()) {
                 Toast.makeText(context, "Amount is empty!", Toast.LENGTH_SHORT).show()

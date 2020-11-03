@@ -11,12 +11,12 @@ class CarViewModel (
     private val carDao: CarDao,
 ) : ViewModel() {
 
-    val cars: LiveData<List<Car>> = carDao.getAllCars()
+    val cars: LiveData<List<Car>> = carDao.getAll()
 
     fun addCar(carId: String) {
         viewModelScope.launch {
             val car = Car(carId)
-            carDao.insertCar(car)
+            carDao.insert(car)
         }
     }
 }

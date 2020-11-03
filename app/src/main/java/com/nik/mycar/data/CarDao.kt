@@ -9,18 +9,12 @@ import androidx.room.Query
 @Dao
 interface CarDao {
 
-    @Query("SELECT * from cars_table WHERE id = :carId")
-    fun getCar(carId: String): Car
-
-    @Query("SELECT * FROM cars_table ORDER BY id DESC")
-    fun getAllCars(): LiveData<List<Car>>
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCar(car: Car)
+    suspend fun insert(car: Car)
 
     @Query("DELETE FROM cars_table WHERE id = :carId")
-    suspend fun deleteCar(carId: String?)
+    suspend fun delete(carId: String?)
 
-    @Query("DELETE FROM cars_table")
-    suspend fun deleteAllCars()
+    @Query("SELECT * FROM cars_table ORDER BY id DESC")
+    fun getAll(): LiveData<List<Car>>
 }

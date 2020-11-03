@@ -29,8 +29,8 @@ class CarDetailsViewModel(
 
     fun deleteCar() {
         viewModelScope.launch {
-            fuellingDao.deleteCarEntries(carId)
-            carDao.deleteCar(carId)
+            fuellingDao.deleteCarRelatedEntries(carId)
+            carDao.delete(carId)
         }
     }
 
@@ -42,7 +42,6 @@ class CarDetailsViewModel(
         }
     }
 
-    // FUELLING
     private val fuellingDateDesc: LiveData<List<Fuelling>> = fuellingDao.getByDateDesc(carId)
     private val fuellingDateAsc: LiveData<List<Fuelling>> = fuellingDao.getByDateAsc(carId)
     private val fuellingAmountDesc: LiveData<List<Fuelling>> = fuellingDao.getByAmountDesc(carId)
@@ -75,8 +74,8 @@ class CarDetailsViewModel(
     }
 
     fun flipDateOrder() = when (currentOrder) {
-        FuellingOrderBy.DATE_DESCENDING -> fuellingDateAsc.value?.let { fuelling.value = it }.also { currentOrder = FuellingOrderBy.DATE_ASCENDING }
-        FuellingOrderBy.DATE_ASCENDING -> fuellingDateDesc.value?.let { fuelling.value = it }.also { currentOrder = FuellingOrderBy.DATE_DESCENDING }
+        FuellingOrderBy.DATE_DESCENDING -> fuellingDateAsc.value?.let { fuelling.value = fuelling.value?.asReversed() }.also { currentOrder = FuellingOrderBy.DATE_ASCENDING }
+        FuellingOrderBy.DATE_ASCENDING -> fuellingDateDesc.value?.let { fuelling.value = fuelling.value?.asReversed() }.also { currentOrder = FuellingOrderBy.DATE_DESCENDING }
         else -> fuellingDateDesc.value?.let { fuelling.value = it }.also { currentOrder = FuellingOrderBy.DATE_DESCENDING }
     }
 
