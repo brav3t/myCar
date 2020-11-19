@@ -36,18 +36,22 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-
         <action
             android:id="@+id/action_carDetailsFragment_to_addFuellingDialogFragment"
             app:destination="@id/addFuellingDialogFragment"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-
         <action
             android:id="@+id/action_carDetailsFragment_to_fuellingListFragment"
             app:destination="@id/fuellingListFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_carDetailsFragment_to_addCheckpointDialogFragment"
+            app:destination="@id/addCheckpointDialogFragment" />
+        <action
+            android:id="@+id/action_carDetailsFragment_to_checkpointListFragment"
+            app:destination="@id/checkpointListFragment" />
     </fragment>
 
     <dialog
@@ -66,6 +70,28 @@
         android:name="com.nik.mycar.ui.main.FuellingListFragment"
         android:label="FuellingListFragment"
         tools:layout="@layout/fragment_fuelling_list">
+
+        <argument
+            android:name="carId"
+            app:argType="string" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/addCheckpointDialogFragment"
+        android:name="com.nik.mycar.ui.main.AddCheckpointDialogFragment"
+        android:label="AddCheckpointDialogFragment"
+        tools:layout="@layout/dialog_add_checkpoint">
+
+        <argument
+            android:name="carId"
+            app:argType="string" />
+    </dialog>
+
+    <fragment
+        android:id="@+id/checkpointListFragment"
+        android:name="com.nik.mycar.ui.main.CheckpointListFragment"
+        android:label="CheckpointListFragment"
+        tools:layout="@layout/fragment_checkpoint_list">
 
         <argument
             android:name="carId"

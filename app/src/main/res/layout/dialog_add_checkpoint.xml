@@ -9,13 +9,13 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/text_add_fuelling"
+            android:id="@+id/text_add_checkpoint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
-            android:text="Add Fuelling"
+            android:text="Add Checkpoint"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#000000"
             android:textSize="20sp"
@@ -24,34 +24,20 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/input_amount"
+            android:id="@+id/input_checkpoint"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
-            android:hint="Amount in liter"
-            android:inputType="numberDecimal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.545"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_add_fuelling" />
-
-        <EditText
-            android:id="@+id/input_cost"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:hint="Cost in HUF"
+            android:hint="Checkpoint in Km"
             android:inputType="numberDecimal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/input_amount" />
+            app:layout_constraintTop_toBottomOf="@+id/text_add_checkpoint" />
 
         <Button
-            android:id="@+id/btn_add_fuelling"
+            android:id="@+id/btn_add_checkpoint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -60,7 +46,7 @@
             android:text="Add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/input_cost" />
+            app:layout_constraintTop_toBottomOf="@+id/input_checkpoint" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

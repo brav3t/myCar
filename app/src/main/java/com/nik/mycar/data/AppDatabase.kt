@@ -8,12 +8,13 @@ import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.WorkManager
 
-@Database(entities = [Car::class, Fuelling::class], version = 1, exportSchema = false)
+@Database(entities = [Car::class, Fuelling::class, Checkpoint::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun carDao(): CarDao
     abstract fun fuellingDao(): FuellingDao
+    abstract fun checkpointDao(): CheckpointDao
 
     companion object {
         @Volatile

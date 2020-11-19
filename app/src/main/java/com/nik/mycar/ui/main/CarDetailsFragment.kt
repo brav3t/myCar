@@ -27,8 +27,9 @@ class CarDetailsFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val carDao = AppDatabase.getInstance(application).carDao()
         val fuellingDao = AppDatabase.getInstance(application).fuellingDao()
+        val checkpointDao = AppDatabase.getInstance(application).checkpointDao()
         val args = CarDetailsFragmentArgs.fromBundle(requireArguments())
-        factory = CarDetailsViewModelFactory(carDao, fuellingDao, args.carId)
+        factory = CarDetailsViewModelFactory(carDao, fuellingDao, checkpointDao, args.carId)
         carDetailsViewModel = ViewModelProvider(this, factory).get(CarDetailsViewModel::class.java)
 
         val binding = FragmentCarDetailsBinding.inflate(inflater, container, false).apply {
@@ -61,11 +62,13 @@ class CarDetailsFragment : Fragment() {
         }
 
         binding.btnMileage.setOnClickListener {
-            Toast.makeText(context, "Not implemented", Toast.LENGTH_SHORT).show()
+            val directions = CarDetailsFragmentDirections.actionCarDetailsFragmentToCheckpointListFragment(args.carId)
+            it.findNavController().navigate(directions)
         }
 
         binding.btnAddCheckpoint.setOnClickListener{
-            Toast.makeText(context, "Not implemented", Toast.LENGTH_SHORT).show()
+            val directions = CarDetailsFragmentDirections.actionCarDetailsFragmentToAddCheckpointDialogFragment(args.carId)
+            it.findNavController().navigate(directions)
         }
 
         return binding.root

@@ -1,43 +1,39 @@
 package com.nik.mycar.data
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
 @Dao
 interface FuellingDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(fuelling: Fuelling)
 
     @Query("DELETE FROM fuelling_table WHERE car_id = :carId")
-    suspend fun deleteCarEntries(carId: String)
-
-    @Query("DELETE FROM fuelling_table")
-    suspend fun clear()
+    suspend fun deleteAllByCarId(carId: String)
 
     @Query("SELECT SUM(cost) AS allCost FROM fuelling_table WHERE car_id = :carId")
-    fun getAllCostByCarId(carId: String): LiveData<Double>
+    fun getSumOfCostsByCarId(carId: String): LiveData<Double>
 
-    // Order by
-    @Query("SELECT * FROM fuelling_table WHERE car_id = :carId ORDER BY date DESC")
-    fun getByDateDesc(carId: String): LiveData<List<Fuelling>>
+    @Query(
+        "SELECT * FROM fuelling_table " +
+                "WHERE car_id = :carId " +
+                "AND amount >= :minAmount AND amount <= :maxAmount " +
+                "AND cost >= :minCost AND cost <= :maxCost " +
+                "ORDER BY date DESC "
+    )
+    fun getAll(
+        carId: String,
+        minAmount: Double,
+        maxAmount: Double,
+        minCost: Double,
+        maxCost: Double
+    ): LiveData<List<Fuelling>>
 
-    @Query("SELECT * FROM fuelling_table WHERE car_id = :carId ORDER BY date ASC")
-    fun getByDateAsc(carId: String): LiveData<List<Fuelling>>
-
-    @Query("SELECT * FROM fuelling_table WHERE car_id = :carId ORDER BY amount DESC")
-    fun getByAmountDesc(carId: String): LiveData<List<Fuelling>>
-
-    @Query("SELECT * FROM fuelling_table WHERE car_id = :carId ORDER BY amount ASC")
-    fun getByAmountAsc(carId: String): LiveData<List<Fuelling>>
-
-    @Query("SELECT * FROM fuelling_table WHERE car_id = :carId ORDER BY cost DESC")
-    fun getByCostDesc(carId: String): LiveData<List<Fuelling>>
-
-    @Query("SELECT * FROM fuelling_table WHERE car_id = :carId ORDER BY cost ASC")
-    fun getByCostAsc(carId: String): LiveData<List<Fuelling>>
+    @Query("SELECT * FROM fuelling_table ORDER BY date DESC")
+    fun getAll(): LiveData<List<Fuelling>>
 
 }

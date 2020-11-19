@@ -10,6 +10,96 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/text_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Amount:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBaseline_toBaselineOf="@+id/input_amount_min"
+            app:layout_constraintEnd_toStartOf="@+id/input_amount_min" />
+
+        <EditText
+            android:id="@+id/input_amount_min"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:hint="minimum"
+            android:inputType="none|number"
+            app:layout_constraintBaseline_toBaselineOf="@+id/input_amount_max"
+            app:layout_constraintEnd_toStartOf="@+id/input_amount_max"
+            tools:text="minimum" />
+
+        <EditText
+            android:id="@+id/input_amount_max"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:hint="maximum"
+            android:inputType="none|number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="maximum" />
+
+        <TextView
+            android:id="@+id/text_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Cost:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBaseline_toBaselineOf="@+id/input_cost_min"
+            app:layout_constraintEnd_toStartOf="@+id/input_cost_min" />
+
+        <EditText
+            android:id="@+id/input_cost_min"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:hint="minimum"
+            android:inputType="none|number"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBaseline_toBaselineOf="@+id/input_cost_max"
+            app:layout_constraintEnd_toStartOf="@+id/input_cost_max"
+            tools:text="minimum" />
+
+        <EditText
+            android:id="@+id/input_cost_max"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:hint="maximum"
+            android:inputType="none|number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/input_amount_max"
+            tools:text="maximum" />
+
+        <Button
+            android:id="@+id/btn_clear_filters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Clear Filters"
+            app:layout_constraintBaseline_toBaselineOf="@+id/btn_apply_filter"
+            app:layout_constraintEnd_toStartOf="@+id/btn_apply_filter" />
+
+        <Button
+            android:id="@+id/btn_apply_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Apply Filters"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/input_cost_max" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fuelling_list"
             android:layout_width="0dp"
@@ -17,59 +107,20 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@+id/btn_clear_fuellings"
+            app:layout_constraintBottom_toTopOf="@+id/btn_clear_fuelling"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_order_by_cost"
-            tools:listitem="@layout/list_item_fuelling" >
-
-        </androidx.recyclerview.widget.RecyclerView>
+            app:layout_constraintTop_toBottomOf="@+id/btn_apply_filter"
+            tools:listitem="@layout/list_item_fuelling" />
 
         <Button
-            android:id="@+id/btn_order_by_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="order by date"
-            android:textSize="9sp"
-            app:layout_constraintEnd_toStartOf="@+id/btn_order_by_amount"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btn_order_by_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="order by amount"
-            android:textSize="9sp"
-            app:layout_constraintEnd_toStartOf="@+id/btn_order_by_cost"
-            app:layout_constraintStart_toEndOf="@+id/btn_order_by_date"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btn_order_by_cost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="order by cost"
-            android:textSize="9sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btn_order_by_amount"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btn_clear_fuellings"
+            android:id="@+id/btn_clear_fuelling"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:text="Clear Fuellings"
+            android:text="Clear Fuelling"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

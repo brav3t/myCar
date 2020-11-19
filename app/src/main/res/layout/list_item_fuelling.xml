@@ -32,7 +32,7 @@
             app:layout_constraintEnd_toStartOf="@+id/text_amount"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="text_date" />
+            tools:text="fuelling_date" />
 
         <TextView
             android:id="@+id/text_amount"
@@ -45,7 +45,7 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/text_date"
             app:layout_constraintEnd_toStartOf="@+id/text_cost"
             app:layout_constraintStart_toEndOf="@+id/text_date"
-            tools:text="text_amount" />
+            tools:text="fuelling_amount" />
 
         <TextView
             android:id="@+id/text_cost"
@@ -58,7 +58,7 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/text_amount"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/text_amount"
-            tools:text="text_cost" />
+            tools:text="fuelling_cost" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

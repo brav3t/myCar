@@ -8,12 +8,13 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.nik.mycar.data.AppDatabase
-import com.nik.mycar.databinding.DialogAddFuellingBinding
+import com.nik.mycar.databinding.DialogAddCheckpointBinding
 import com.nik.mycar.viewmodels.CarDetailsViewModel
 import com.nik.mycar.viewmodels.CarDetailsViewModelFactory
+import kotlinx.android.synthetic.main.dialog_add_checkpoint.*
 import kotlinx.android.synthetic.main.dialog_add_fuelling.*
 
-class AddFuellingDialogFragment : DialogFragment() {
+class AddCheckpointDialogFragment : DialogFragment() {
 
     private lateinit var carDetailsViewModel: CarDetailsViewModel
     private lateinit var factory: CarDetailsViewModelFactory
@@ -31,7 +32,7 @@ class AddFuellingDialogFragment : DialogFragment() {
         factory = CarDetailsViewModelFactory(carDao, fuellingDao, checkpointDao, args.carId)
         carDetailsViewModel = ViewModelProvider(this, factory).get(CarDetailsViewModel::class.java)
 
-        val binding = DialogAddFuellingBinding.inflate(inflater, container, false)
+        val binding = DialogAddCheckpointBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -39,21 +40,21 @@ class AddFuellingDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btn_add_fuelling.setOnClickListener {
-            val amountStr: String? = input_amount.text?.toString()
-            if(amountStr.isNullOrEmpty()) {
-                Toast.makeText(context, "Amount is empty!", Toast.LENGTH_SHORT).show()
+        btn_add_checkpoint.setOnClickListener {
+            val checkpointStr: String? = input_checkpoint.text?.toString()
+            if(checkpointStr.isNullOrEmpty()) {
+                Toast.makeText(context, "Checkpoint is empty!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            val costStr: String? = input_cost.text?.toString()
-            if(costStr.isNullOrEmpty()) {
-                Toast.makeText(context, "Cost is empty!", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
+//            val lastCheckpoint: Int? = carDetailsViewModel.lastCheckpoint.value
+//            if (lastCheckpoint != null && (checkpointStr.toInt() < lastCheckpoint)) {
+//                Toast.makeText(context, "New checkpoint cannot be less than previous value", Toast.LENGTH_SHORT).show()
+//                return@setOnClickListener
+//            }
 
-            carDetailsViewModel.addFuelling(amountStr.toDouble(), costStr.toDouble())
-            Toast.makeText(context, "Fuelling is added!", Toast.LENGTH_SHORT).show()
+            carDetailsViewModel.addCheckpoint(checkpointStr.toInt())
+            Toast.makeText(context, "Checkpoint added!", Toast.LENGTH_SHORT).show()
 
             dismiss()
         }
