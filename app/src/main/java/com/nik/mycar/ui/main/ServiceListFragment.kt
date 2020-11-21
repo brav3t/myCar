@@ -5,16 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.nik.mycar.adapters.CheckpointListAdapter
+import com.nik.mycar.adapters.ServiceListAdapter
 import com.nik.mycar.data.AppDatabase
-import com.nik.mycar.databinding.FragmentCheckpointListBinding
+import com.nik.mycar.databinding.FragmentServiceListBinding
 import com.nik.mycar.viewmodels.CarDetailsViewModel
 import com.nik.mycar.viewmodels.CarDetailsViewModelFactory
-import kotlinx.android.synthetic.main.fragment_checkpoint_list.*
 
-class CheckpointListFragment : Fragment() {
+class ServiceListFragment : Fragment() {
 
     private lateinit var carDetailsViewModel: CarDetailsViewModel
     private lateinit var factory: CarDetailsViewModelFactory
@@ -29,26 +27,18 @@ class CheckpointListFragment : Fragment() {
         val serviceDao = AppDatabase.getInstance(application).serviceDao()
         val checkpointDao = AppDatabase.getInstance(application).checkpointDao()
         val args = CarDetailsFragmentArgs.fromBundle(requireArguments())
-        factory = CarDetailsViewModelFactory(carDao, fuellingDao, serviceDao ,checkpointDao, args.carId)
+        factory = CarDetailsViewModelFactory(carDao, fuellingDao, serviceDao, checkpointDao, args.carId)
         carDetailsViewModel = ViewModelProvider(this, factory).get(CarDetailsViewModel::class.java)
 
-        val binding = FragmentCheckpointListBinding.inflate(inflater, container, false)
+        val binding = FragmentServiceListBinding.inflate(inflater, container, false)
 
-        val adapter = CheckpointListAdapter()
-        binding.checkpointList.adapter = adapter
-        carDetailsViewModel.checkpointList.observe(viewLifecycleOwner) {checkpointList ->
-            adapter.submitList(checkpointList)
-        }
-
-        binding.btnReverseOrder.setOnClickListener {
-            carDetailsViewModel.reverseCheckpoints()
-        }
-
-        binding.btnClearCheckpoints.setOnClickListener {
-            carDetailsViewModel.deleteCheckpointList()
-            Toast.makeText(context, "Checkpoints cleared", Toast.LENGTH_SHORT).show()
+        val adapter = ServiceListAdapter()
+        binding.serviceList.adapter = adapter
+        carDetailsViewModel.serviceList.observe(viewLifecycleOwner) {serviceList ->
+            adapter.submitList(serviceList)
         }
 
         return binding.root
     }
+
 }

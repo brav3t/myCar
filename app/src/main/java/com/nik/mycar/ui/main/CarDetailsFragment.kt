@@ -27,9 +27,10 @@ class CarDetailsFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val carDao = AppDatabase.getInstance(application).carDao()
         val fuellingDao = AppDatabase.getInstance(application).fuellingDao()
+        val serviceDao = AppDatabase.getInstance(application).serviceDao()
         val checkpointDao = AppDatabase.getInstance(application).checkpointDao()
         val args = CarDetailsFragmentArgs.fromBundle(requireArguments())
-        factory = CarDetailsViewModelFactory(carDao, fuellingDao, checkpointDao, args.carId)
+        factory = CarDetailsViewModelFactory(carDao, fuellingDao, serviceDao ,checkpointDao, args.carId)
         carDetailsViewModel = ViewModelProvider(this, factory).get(CarDetailsViewModel::class.java)
 
         val binding = FragmentCarDetailsBinding.inflate(inflater, container, false).apply {
@@ -54,7 +55,8 @@ class CarDetailsFragment : Fragment() {
         }
 
         binding.btnServiceCost.setOnClickListener {
-            Toast.makeText(context, "Not implemented", Toast.LENGTH_SHORT).show()
+            val direction = CarDetailsFragmentDirections.actionCarDetailsFragmentToServiceListFragment(args.carId)
+            it.findNavController().navigate(direction)
         }
 
         binding.btnAddService.setOnClickListener{

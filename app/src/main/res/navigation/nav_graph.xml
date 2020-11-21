@@ -52,6 +52,9 @@
         <action
             android:id="@+id/action_carDetailsFragment_to_checkpointListFragment"
             app:destination="@id/checkpointListFragment" />
+        <action
+            android:id="@+id/action_carDetailsFragment_to_serviceListFragment"
+            app:destination="@id/serviceListFragment" />
     </fragment>
 
     <dialog
@@ -92,6 +95,17 @@
         android:name="com.nik.mycar.ui.main.CheckpointListFragment"
         android:label="CheckpointListFragment"
         tools:layout="@layout/fragment_checkpoint_list">
+
+        <argument
+            android:name="carId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/serviceListFragment"
+        android:name="com.nik.mycar.ui.main.ServiceListFragment"
+        android:label="fragment_service_list"
+        tools:layout="@layout/fragment_service_list">
 
         <argument
             android:name="carId"

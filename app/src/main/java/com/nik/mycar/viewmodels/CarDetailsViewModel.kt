@@ -10,6 +10,7 @@ import kotlin.math.absoluteValue
 class CarDetailsViewModel(
     private val carDao: CarDao,
     private val fuellingDao: FuellingDao,
+    private val serviceDao: ServiceDao,
     private val checkpointDao: CheckpointDao,
     val carId: String
     ) : ViewModel() {
@@ -61,12 +62,19 @@ class CarDetailsViewModel(
     private var fuellingListSource = fuellingDao.getAll(carId, 0.0, Double.MAX_VALUE, 0.0, Double.MAX_VALUE)
     val fuellingList = MediatorLiveData<List<Fuelling>>()
 
+    private var serviceListSource = serviceDao.getAllByCarId(carId)
+    val serviceList = MediatorLiveData<List<Service>>()
+
     private var checkpointListSource = checkpointDao.getAllByCarId(carId)
     val checkpointList = MediatorLiveData<List<Checkpoint>>()
 
     init {
         fuellingList.addSource(fuellingListSource) {
             fuellingList.value = it
+        }
+
+        serviceList.addSource(serviceListSource) {
+            serviceList.value = it
         }
 
         checkpointList.addSource(checkpointListSource) {
