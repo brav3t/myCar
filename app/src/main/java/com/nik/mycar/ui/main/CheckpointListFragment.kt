@@ -40,7 +40,7 @@ class CheckpointListFragment : Fragment() {
         }
 
         binding.btnReverseOrder.setOnClickListener {
-
+            carDetailsViewModel.reverseCheckpoints()
         }
 
         binding.btnClearCheckpoints.setOnClickListener {

@@ -81,4 +81,14 @@ class CarDetailsViewModel(
             fuellingList.value = it
         }
     }
+
+    fun reverseCheckpoints() {
+        checkpointList.removeSource(checkpointListSource)
+        checkpointListSource = Transformations.map(checkpointListSource) {
+            it.asReversed()
+        }
+        checkpointList.addSource(checkpointListSource) {
+            checkpointList.value = it
+        }
+    }
 }
