@@ -5,6 +5,7 @@ import com.nik.mycar.data.*
 import kotlinx.coroutines.launch
 import java.text.NumberFormat
 import java.util.*
+import kotlin.math.absoluteValue
 
 class CarDetailsViewModel(
     private val carDao: CarDao,

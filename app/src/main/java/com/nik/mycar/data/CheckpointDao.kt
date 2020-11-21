@@ -18,6 +18,9 @@ interface CheckpointDao {
         @Query("SELECT * from checkpoints_table WHERE car_id = :carId ORDER BY date DESC")
         fun getAllByCarId(carId: String): LiveData<List<Checkpoint>>
 
-        @Query("SELECT checkpoint FROM checkpoints_table WHERE car_id = :carId ORDER BY date ASC LIMIT 1")
+        @Query("SELECT checkpoint FROM checkpoints_table WHERE car_id = :carId ORDER BY date DESC LIMIT 1")
         fun getLast(carId: String): LiveData<Int>
+
+        @Query("SELECT checkpoint FROM checkpoints_table WHERE car_id = :carId ORDER BY date DESC LIMIT 1")
+        fun getLastValue(carId: String): Int
 }

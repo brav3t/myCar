@@ -26,5 +26,5 @@ data class Fuelling(
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val fuellingId: Long = -1
+    val fuellingId: Long = 0
 )

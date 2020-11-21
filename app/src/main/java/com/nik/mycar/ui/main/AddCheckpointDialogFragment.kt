@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.nik.mycar.data.AppDatabase
 import com.nik.mycar.databinding.DialogAddCheckpointBinding
 import com.nik.mycar.viewmodels.CarDetailsViewModel
@@ -46,17 +47,22 @@ class AddCheckpointDialogFragment : DialogFragment() {
                 Toast.makeText(context, "Checkpoint is empty!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            else if (checkpointStr.toInt() <= 0) {
+                Toast.makeText(context, "Checkpoint cannot be less or equal to zero!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
-//            val lastCheckpoint: Int? = carDetailsViewModel.lastCheckpoint.value
-//            if (lastCheckpoint != null && (checkpointStr.toInt() < lastCheckpoint)) {
-//                Toast.makeText(context, "New checkpoint cannot be less than previous value", Toast.LENGTH_SHORT).show()
-//                return@setOnClickListener
-//            }
+            carDetailsViewModel.lastCheckpoint.observe(viewLifecycleOwner) { lastCheckpoint ->
+                carDetailsViewModel.lastCheckpoint.removeObservers(viewLifecycleOwner)
+                if (checkpointStr.toInt() < lastCheckpoint ?: 0) {
+                    Toast.makeText(context, "New checkpoint cannot be less than previous value", Toast.LENGTH_SHORT).show()
+                    return@observe
+                }
+                carDetailsViewModel.addCheckpoint(checkpointStr.toInt())
+                Toast.makeText(context, "Checkpoint added!", Toast.LENGTH_SHORT).show()
 
-            carDetailsViewModel.addCheckpoint(checkpointStr.toInt())
-            Toast.makeText(context, "Checkpoint added!", Toast.LENGTH_SHORT).show()
-
-            dismiss()
+                dismiss()
+            }
         }
     }
 }

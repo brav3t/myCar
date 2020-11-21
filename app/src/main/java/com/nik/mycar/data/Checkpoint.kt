@@ -23,5 +23,5 @@ data class Checkpoint(
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val checkpointId: Long = -1
+    val checkpointId: Long = 0
 )

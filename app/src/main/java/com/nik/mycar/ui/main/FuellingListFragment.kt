@@ -51,7 +51,7 @@ class FuellingListFragment : Fragment() {
             binding.inputAmountMin.text.clear()
             binding.inputAmountMax.text.clear()
             binding.inputCostMin.text.clear()
-            binding.inputAmountMax.text.clear()
+            binding.inputCostMax.text.clear()
             carDetailsViewModel.reloadFuellingList(0.0, Double.MAX_VALUE, 0.0, Double.MAX_VALUE)
         }
 
