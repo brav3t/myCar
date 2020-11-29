@@ -60,7 +60,8 @@ class CarDetailsFragment : Fragment() {
         }
 
         binding.btnAddService.setOnClickListener{
-            Toast.makeText(context, "Not implemented", Toast.LENGTH_SHORT).show()
+            val direction = CarDetailsFragmentDirections.actionCarDetailsFragmentToAddServiceDialogFragment(args.carId)
+            it.findNavController().navigate(direction)
         }
 
         binding.btnMileage.setOnClickListener {

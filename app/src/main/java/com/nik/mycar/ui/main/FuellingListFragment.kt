@@ -5,9 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.map
 import com.nik.mycar.adapters.FuellingListAdapter
 import com.nik.mycar.data.AppDatabase
 import com.nik.mycar.databinding.FragmentFuellingListBinding
@@ -45,7 +43,7 @@ class FuellingListFragment : Fragment() {
             val maxAmount = binding.inputAmountMax.text?.toString()?.toDoubleOrNull() ?: Double.MAX_VALUE
             val minCost = binding.inputCostMin.text?.toString()?.toDoubleOrNull() ?: 0.0
             val maxCost = binding.inputCostMax.text?.toString()?.toDoubleOrNull() ?: Double.MAX_VALUE
-            carDetailsViewModel.reloadFuellingList(minAmount, maxAmount, minCost, maxCost)
+            carDetailsViewModel.filterFuellingList(minAmount, maxAmount, minCost, maxCost)
         }
 
         binding.btnClearFilters.setOnClickListener {
@@ -53,7 +51,7 @@ class FuellingListFragment : Fragment() {
             binding.inputAmountMax.text.clear()
             binding.inputCostMin.text.clear()
             binding.inputCostMax.text.clear()
-            carDetailsViewModel.reloadFuellingList(0.0, Double.MAX_VALUE, 0.0, Double.MAX_VALUE)
+            carDetailsViewModel.filterFuellingList(0.0, Double.MAX_VALUE, 0.0, Double.MAX_VALUE)
         }
 
         binding.btnClearFuelling.setOnClickListener {

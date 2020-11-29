@@ -38,6 +38,19 @@ class ServiceListFragment : Fragment() {
             adapter.submitList(serviceList)
         }
 
+        binding.btnClearServices.setOnClickListener {
+            carDetailsViewModel.deleteServiceList()
+        }
+
+        binding.btnClear.setOnClickListener {
+            binding.textSearchText.text.clear()
+            carDetailsViewModel.filterServicesByWord(null)
+        }
+
+        binding.btnSearch.setOnClickListener {
+            carDetailsViewModel.filterServicesByWord(binding.textSearchText.text.toString())
+        }
+
         return binding.root
     }
 

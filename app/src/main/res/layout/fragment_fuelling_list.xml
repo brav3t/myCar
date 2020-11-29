@@ -29,8 +29,7 @@
             android:hint="minimum"
             android:inputType="none|number"
             app:layout_constraintBaseline_toBaselineOf="@+id/input_amount_max"
-            app:layout_constraintEnd_toStartOf="@+id/input_amount_max"
-            tools:text="minimum" />
+            app:layout_constraintEnd_toStartOf="@+id/input_amount_max" />
 
         <EditText
             android:id="@+id/input_amount_max"
@@ -42,8 +41,7 @@
             android:hint="maximum"
             android:inputType="none|number"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="maximum" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/text_cost"
@@ -65,8 +63,7 @@
             android:inputType="none|number"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintBaseline_toBaselineOf="@+id/input_cost_max"
-            app:layout_constraintEnd_toStartOf="@+id/input_cost_max"
-            tools:text="minimum" />
+            app:layout_constraintEnd_toStartOf="@+id/input_cost_max" />
 
         <EditText
             android:id="@+id/input_cost_max"
@@ -78,8 +75,7 @@
             android:hint="maximum"
             android:inputType="none|number"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/input_amount_max"
-            tools:text="maximum" />
+            app:layout_constraintTop_toBottomOf="@+id/input_amount_max" />
 
         <Button
             android:id="@+id/btn_clear_filters"

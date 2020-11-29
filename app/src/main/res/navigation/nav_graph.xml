@@ -33,9 +33,7 @@
             android:id="@+id/action_carDetailsFragment_to_carListFragment"
             app:destination="@id/carListFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:exitAnim="@anim/nav_default_exit_anim" />
         <action
             android:id="@+id/action_carDetailsFragment_to_addFuellingDialogFragment"
             app:destination="@id/addFuellingDialogFragment"
@@ -48,13 +46,24 @@
             app:exitAnim="@anim/nav_default_exit_anim" />
         <action
             android:id="@+id/action_carDetailsFragment_to_addCheckpointDialogFragment"
-            app:destination="@id/addCheckpointDialogFragment" />
+            app:destination="@id/addCheckpointDialogFragment"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_carDetailsFragment_to_checkpointListFragment"
-            app:destination="@id/checkpointListFragment" />
+            app:destination="@id/checkpointListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
         <action
             android:id="@+id/action_carDetailsFragment_to_serviceListFragment"
-            app:destination="@id/serviceListFragment" />
+            app:destination="@id/serviceListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_carDetailsFragment_to_addServiceDialogFragment"
+            app:destination="@id/addServiceDialogFragment"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <dialog
@@ -111,5 +120,16 @@
             android:name="carId"
             app:argType="string" />
     </fragment>
+
+    <dialog
+        android:id="@+id/addServiceDialogFragment"
+        android:name="com.nik.mycar.ui.main.AddServiceDialogFragment"
+        android:label="AddServiceDialogFragment"
+        tools:layout="@layout/dialog_add_service">
+
+        <argument
+            android:name="carId"
+            app:argType="string" />
+    </dialog>
 
 </navigation>

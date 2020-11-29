@@ -39,6 +39,23 @@ class CarDetailsViewModel(
         }
     }
 
+    fun addService(description: String, cost: Double) {
+        viewModelScope.launch {
+            val serviceItem = Service(carId, description, cost)
+            serviceDao.insert(serviceItem)
+        }
+    }
+
+    val serviceCostSum: LiveData<String> = Transformations.map(serviceDao.getSumOfServicesByCarId(carId)) { sumOfCosts ->
+        NumberFormat.getCurrencyInstance(Locale("hu", "HU")).format(sumOfCosts?: 0.0)
+    }
+
+    fun deleteServiceList() {
+        viewModelScope.launch {
+            serviceDao.deleteAllByCarId(carId)
+        }
+    }
+
     fun addCheckpoint(checkpoint: Int) {
         viewModelScope.launch {
             val checkpointItem = Checkpoint(carId, checkpoint)
@@ -56,8 +73,6 @@ class CarDetailsViewModel(
     val lastCheckpointStr: LiveData<String> =  Transformations.map(lastCheckpoint){ checkpoint ->
         (checkpoint?.toString() ?: "0") + " Km"
     }
-
-    val serviceCost: String = NumberFormat.getCurrencyInstance(Locale("hu", "HU")).format(0.0)
 
     private var fuellingListSource = fuellingDao.getAll(carId, 0.0, Double.MAX_VALUE, 0.0, Double.MAX_VALUE)
     val fuellingList = MediatorLiveData<List<Fuelling>>()
@@ -82,11 +97,31 @@ class CarDetailsViewModel(
         }
     }
 
-    fun reloadFuellingList(minAmount: Double, maxAmount: Double, minCost: Double, maxCost: Double) {
+    fun filterFuellingList(minAmount: Double, maxAmount: Double, minCost: Double, maxCost: Double) {
         fuellingList.removeSource(fuellingListSource)
         fuellingListSource = fuellingDao.getAll(carId, minAmount, maxAmount, minCost, maxCost)
         fuellingList.addSource(fuellingListSource) {
             fuellingList.value = it
+        }
+    }
+
+    fun filterServicesByWord(word: String?) {
+        if (word != null) {
+            var filteredServices = Transformations.map(serviceDao.getAllByCarId(carId)) {
+                var list = it.filter { service ->
+                    word in service.description
+                }
+                list
+            }
+            serviceList.removeSource(serviceListSource)
+            serviceList.addSource(filteredServices) {
+                serviceList.value = it
+            }
+        } else {
+            serviceList.removeSource(serviceListSource)
+            serviceList.addSource(serviceDao.getAllByCarId(carId)) {
+                serviceList.value = it
+            }
         }
     }
 
