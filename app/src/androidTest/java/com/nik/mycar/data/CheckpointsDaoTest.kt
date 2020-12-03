@@ -46,11 +46,39 @@ class CheckpointsDaoTest {
     fun insertCheckpointItemTest() = runBlockingTest {
         val car = Car("car")
         carDao.insert(car)
-        val checkpointItem = Checkpoint(car.carId, 12345)
+        val checkpointItem = Checkpoint(car.carId, 12345, -1)
         checkpointDao.insert(checkpointItem)
 
         val allCars = checkpointDao.getAllByCarId(car.carId).getOrAwaitValue()
-
         Truth.assertThat(allCars).contains(checkpointItem)
+    }
+
+    @Test
+    fun deleteAllCheckpointByCarIdTest() = runBlockingTest {
+        val carItem = Car("car")
+        carDao.insert(carItem)
+        val checkpointItem1 = Checkpoint(carItem.carId, 12345, -1)
+        val checkpointItem2 = Checkpoint(carItem.carId, 12345, 0)
+        checkpointDao.insert(checkpointItem1)
+        checkpointDao.insert(checkpointItem2)
+        checkpointDao.deleteAllByCarId(carItem.carId)
+
+        val allCars = checkpointDao.getAllByCarId(carItem.carId).getOrAwaitValue()
+        Truth.assertThat(allCars).doesNotContain(checkpointItem1)
+        Truth.assertThat(allCars).doesNotContain(checkpointItem2)
+    }
+
+    @Test
+    fun getLastCheckpointItemValueTest() = runBlockingTest {
+        val carItem = Car("car")
+        carDao.insert(carItem)
+        val checkpointItem1 = Checkpoint(carItem.carId, 12345, -1)
+        val checkpointItem2 = Checkpoint(carItem.carId, 12345, 0)
+        checkpointDao.insert(checkpointItem1)
+        checkpointDao.insert(checkpointItem2)
+        val lastItem = checkpointDao.getLast(carItem.carId).getOrAwaitValue()
+
+        val allCars = checkpointDao.getAllByCarId(carItem.carId).getOrAwaitValue()
+        Truth.assertThat(allCars.last().checkpoint).isEqualTo(lastItem)
     }
 }

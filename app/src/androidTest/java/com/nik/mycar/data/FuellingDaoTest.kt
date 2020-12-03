@@ -43,14 +43,94 @@ class FuellingDaoTest {
     }
 
     @Test
-    fun insertCheckpointItemTest() = runBlockingTest {
+    fun insertFuellingItemTest() = runBlockingTest {
         val car = Car("car")
         carDao.insert(car)
-        val fuellingItem = Fuelling("car", 10.0, 10000.0)
+        val fuellingItem = Fuelling("car", 10.0, 10000.0, -1)
         fuellingDao.insert(fuellingItem)
 
         val allCars = fuellingDao.getAll().getOrAwaitValue()
-
         Truth.assertThat(allCars).contains(fuellingItem)
+    }
+
+    @Test
+    fun deleteAllFuellingByCarIdTest() = runBlockingTest {
+        val carItem = Car("car")
+        carDao.insert(carItem)
+        val fuellingItem1 = Fuelling("car", 10.0, 10000.0, -1)
+        val fuellingItem2 = Fuelling("car", 20.0, 20000.0, 0)
+        fuellingDao.insert(fuellingItem1)
+        fuellingDao.insert(fuellingItem2)
+        fuellingDao.deleteAllByCarId(carItem.carId)
+
+        val allCars = fuellingDao.getAll().getOrAwaitValue()
+        Truth.assertThat(allCars).doesNotContain(fuellingItem1)
+        Truth.assertThat(allCars).doesNotContain(fuellingItem2)
+    }
+
+    @Test
+    fun getSumOfCostsByCarIdTest() = runBlockingTest {
+        val carItem = Car("car")
+        carDao.insert(carItem)
+        val fuellingItem1 = Fuelling("car", 10.0, 10000.0, -1)
+        val fuellingItem2 = Fuelling("car", 20.0, 20000.0, 0)
+        fuellingDao.insert(fuellingItem1)
+        fuellingDao.insert(fuellingItem2)
+        val sum = fuellingDao.getSumOfCostsByCarId(carItem.carId).getOrAwaitValue()
+
+        val allCars = fuellingDao.getAll().getOrAwaitValue()
+        Truth.assertThat(allCars.sumOf { fuelling -> fuelling.cost }).isEqualTo(sum)
+    }
+
+    @Test
+    fun getAllByMinAmountTest() = runBlockingTest {
+        val carItem = Car("car")
+        carDao.insert(carItem)
+        val fuellingItem1 = Fuelling("car", 10.0, 10000.0, -1)
+        val fuellingItem2 = Fuelling("car", 20.0, 20000.0, 0)
+        fuellingDao.insert(fuellingItem1)
+        fuellingDao.insert(fuellingItem2)
+
+        val allCars = fuellingDao.getAll(carItem.carId, 20.0, 20.0, 10000.0, 20000.0).getOrAwaitValue()
+        Truth.assertThat(allCars).doesNotContain(fuellingItem1)
+    }
+
+    @Test
+    fun getAllByMaxAmountTest() = runBlockingTest {
+        val carItem = Car("car")
+        carDao.insert(carItem)
+        val fuellingItem1 = Fuelling("car", 10.0, 10000.0, -1)
+        val fuellingItem2 = Fuelling("car", 20.0, 20000.0, 0)
+        fuellingDao.insert(fuellingItem1)
+        fuellingDao.insert(fuellingItem2)
+
+        val allCars = fuellingDao.getAll(carItem.carId, 10.0, 10.0, 10000.0, 20000.0).getOrAwaitValue()
+        Truth.assertThat(allCars).doesNotContain(fuellingItem2)
+    }
+
+    @Test
+    fun getAllByMinCostTest() = runBlockingTest {
+        val carItem = Car("car")
+        carDao.insert(carItem)
+        val fuellingItem1 = Fuelling("car", 10.0, 10000.0, -1)
+        val fuellingItem2 = Fuelling("car", 20.0, 20000.0, 0)
+        fuellingDao.insert(fuellingItem1)
+        fuellingDao.insert(fuellingItem2)
+
+        val allCars = fuellingDao.getAll(carItem.carId, 10.0, 20.0, 20000.0, 20000.0).getOrAwaitValue()
+        Truth.assertThat(allCars).doesNotContain(fuellingItem1)
+    }
+
+    @Test
+    fun getAllByMaxCostTest() = runBlockingTest {
+        val carItem = Car("car")
+        carDao.insert(carItem)
+        val fuellingItem1 = Fuelling("car", 10.0, 10000.0, -1)
+        val fuellingItem2 = Fuelling("car", 20.0, 20000.0, 0)
+        fuellingDao.insert(fuellingItem1)
+        fuellingDao.insert(fuellingItem2)
+
+        val allCars = fuellingDao.getAll(carItem.carId, 10.0, 20.0, 10000.0, 10000.0).getOrAwaitValue()
+        Truth.assertThat(allCars).doesNotContain(fuellingItem2)
     }
 }

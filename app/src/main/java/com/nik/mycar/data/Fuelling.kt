@@ -21,10 +21,10 @@ data class Fuelling(
     @ColumnInfo(name = "cost")
     val cost: Double,
 
-    @ColumnInfo(name = "date")
-    val date: Calendar = Calendar.getInstance(),
-
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val fuellingId: Long = 0
+    val fuellingId: Long = 0,
+
+    @ColumnInfo(name = "date")
+    val date: Calendar = Calendar.getInstance()
 )

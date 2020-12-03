@@ -46,7 +46,6 @@ class CarDaoTest {
         carDao.insert(carItem)
 
         val allCars = carDao.getAll().getOrAwaitValue()
-
         assertThat(allCars).contains(carItem)
     }
 

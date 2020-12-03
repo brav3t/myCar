@@ -18,10 +18,10 @@ data class Checkpoint(
     @ColumnInfo(name = "checkpoint")
     val checkpoint: Int,
 
-    @ColumnInfo(name = "date")
-    val date: Calendar = Calendar.getInstance(),
-
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val checkpointId: Long = 0
+    val checkpointId: Long = 0,
+
+    @ColumnInfo(name = "date")
+    val date: Calendar = Calendar.getInstance()
 )

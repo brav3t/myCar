@@ -21,10 +21,10 @@ data class Service(
     @ColumnInfo(name = "cost")
     val cost: Double,
 
-    @ColumnInfo(name = "date")
-    val date: Calendar = Calendar.getInstance(),
-
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val serviceId: Long = 0
+    val serviceId: Long = 0,
+
+    @ColumnInfo(name = "date")
+    val date: Calendar = Calendar.getInstance()
 )

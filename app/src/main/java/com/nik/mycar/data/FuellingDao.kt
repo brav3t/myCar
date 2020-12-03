@@ -35,5 +35,4 @@ interface FuellingDao {
 
     @Query("SELECT * FROM fuelling_table ORDER BY date DESC")
     fun getAll(): LiveData<List<Fuelling>>
-
 }

@@ -70,7 +70,7 @@ class CarDetailsViewModel(
     }
 
     val lastCheckpoint: LiveData<Int> = checkpointDao.getLast(carId)
-    val lastCheckpointStr: LiveData<String> =  Transformations.map(lastCheckpoint){ checkpoint ->
+    val lastCheckpointStr: LiveData<String> = Transformations.map(lastCheckpoint){ checkpoint ->
         (checkpoint?.toString() ?: "0") + " Km"
     }
 
