@@ -5,8 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import androidx.sqlite.db.SupportSQLiteDatabase
-import androidx.work.WorkManager
+//import androidx.sqlite.db.SupportSQLiteDatabase
+//import androidx.work.WorkManager
 
 @Database(entities = [Car::class, Fuelling::class, Service::class, Checkpoint::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
